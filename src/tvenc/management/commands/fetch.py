@@ -28,7 +28,8 @@ class Command(BaseCommand):
                     # 新規登録
                     logger.debug("New program %s", program_data["id"])
                     program = Program.from_chinachu(program_data)
-                    recorded_program = RecordedProgram(program=program, server=server)
+                    filename = program_data["recorded"].split("/")[-1]
+                    recorded_program = RecordedProgram(program=program, server=server, filename=filename)
                     recorded_program.save()
 
             except Exception as e:

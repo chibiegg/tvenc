@@ -122,6 +122,7 @@ class RecordedProgram(models.Model):
                      )
 
     status = models.IntegerField("ステータス", choices=STATUS_CHOICES, default=STATUS_NEW)
+    filename = models.CharField("ファイル名", max_length=200)
 
     start_encode = models.DateTimeField("エンコード開始時刻", blank=True, null=True)
     end_encode = models.DateTimeField("エンコード完了時刻", blank=True, null=True)
