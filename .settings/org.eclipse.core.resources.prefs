@@ -2,6 +2,7 @@ eclipse.preferences.version=1
 encoding//src/chinachu/__init__.py=utf-8
 encoding//src/chinachu/client.py=utf-8
 encoding//src/tvenc/admin.py=utf-8
+encoding//src/tvenc/management/commands/encode.py=utf-8
 encoding//src/tvenc/management/commands/fetch.py=utf-8
 encoding//src/tvenc/models.py=utf-8
 encoding//src/tvenc/settings.py=utf-8

@@ -110,13 +110,15 @@ class RecordedProgram(models.Model):
 
     STATUS_NEW = 101
     STATUS_ENCODING = 102
+    STATUS_ENCODE_ERROR = 200
     STATUS_ENCODED = 400
     STATUS_DELETED = 500
     STATUS_CHOICES = (
-                     ("新規", STATUS_NEW),
-                     ("エンコード中", STATUS_ENCODING),
-                     ("エンコード完了", STATUS_ENCODED),
-                     ("削除済み", STATUS_DELETED)
+                     (STATUS_NEW, "新規"),
+                     (STATUS_ENCODING, "エンコード中"),
+                     (STATUS_ENCODED, "エンコード完了"),
+                     (STATUS_ENCODE_ERROR, "エンコード失敗"),
+                     (STATUS_DELETED, "削除済み")
                      )
 
     status = models.IntegerField("ステータス", choices=STATUS_CHOICES, default=STATUS_NEW)
@@ -127,6 +129,4 @@ class RecordedProgram(models.Model):
 
     def __str__(self):
         return self.program.__str__()
-
-
 
