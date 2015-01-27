@@ -7,3 +7,4 @@ encoding//src/tvenc/management/commands/fetch.py=utf-8
 encoding//src/tvenc/models.py=utf-8
 encoding//src/tvenc/run_settings.py=utf-8
 encoding//src/tvenc/settings.py=utf-8
+encoding//src/tvenc/views.py=utf-8

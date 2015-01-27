@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+  
+  
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>時刻</th>
+      <th>状態</th>
+      <th>チャンネル</th>
+      <th>タイトル</th>
+    </tr>
+    {% for p in programs %}
+    <tr>
+      <th>{{ p.id }}</th>
+      <td>{{ p.program.start }}</td>
+      <td>{{ p.get_status_display }}</td>
+      <td>{{ p.program.channel }}</td>
+      <td>{{ p.program.full_title }}</td>
+    
+    </tr>
+    {% endfor %}
+  
+  </body>
+</html>
