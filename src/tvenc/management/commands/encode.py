@@ -45,8 +45,8 @@ class Command(BaseCommand):
                 time.sleep(10)
                 continue
 
-            # recorded_program.status = RecordedProgram.STATUS_ENCODING
-            # recorded_program.save()
+            recorded_program.status = RecordedProgram.STATUS_ENCODING
+            recorded_program.save()
             self.db_semaphore.release()
 
             self.logger.info("Start Encoding ID:%d %s", recorded_program.id, recorded_program.program.program_id)
@@ -55,7 +55,7 @@ class Command(BaseCommand):
                 server = recorded_program.server
                 program = recorded_program.program
                 input_file = "{0}/{1}".format(server.mountpoint, recorded_program.filename)
-                output_file = recorded_program.filename
+                output_file = recorded_program.filename.replace(".m2ts",".mp4")
                 cd_cmd = "cd \"{0}\"".format(settings.ENCODED_DIR)
                 encode_cmd = "HandBrakeCLI -i \"{0}\" -o \"{1}\"  -t 1 -c 1 -f mp4 --denoise=\"2:1.5:3:2.25\" -w 1280 -l 720 ".format(input_file, output_file)
                 encode_cmd += "--crop 0:0:0:0 --modulus 2 -e x264 -r 29.97 --detelecine -q 21 -a 1 -E faac -6 stereo -R Auto -B 128 -D 0 "
