@@ -54,5 +54,5 @@ docs/_build/
 target/
 
 # for Develop
-db.sqlite
+db.sqlite3
 
