@@ -5,6 +5,7 @@ import threading
 import traceback
 import subprocess
 import time
+import datetime
 from django.core.management.base import BaseCommand
 from django.conf import settings
 import chinachu
@@ -46,6 +47,7 @@ class Command(BaseCommand):
                 continue
 
             recorded_program.status = RecordedProgram.STATUS_ENCODING
+            recorded_program.start_encode = datetime.datetime.now()
             recorded_program.save()
             self.db_semaphore.release()
 
@@ -65,6 +67,7 @@ class Command(BaseCommand):
                 result = subprocess.call(cmd, shell=True)
                 if result == 0:
                     recorded_program.status = RecordedProgram.STATUS_ENCODED
+                    recorded_program.end_encode = datetime.datetime.now()
                     recorded_program.save()
                     self.logger.info("Encoded Successful ID:%d %s", recorded_program.id, recorded_program.program.program_id)
                     continue
