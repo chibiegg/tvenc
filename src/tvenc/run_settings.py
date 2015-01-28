@@ -21,4 +21,5 @@ ENCODED_DIR = "/var/tv/encoded"
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
+LOGIN_URL = "/admin/login/"
 STATIC_URL = '/static/'
