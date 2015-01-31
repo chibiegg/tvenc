@@ -19,7 +19,7 @@ def get_newjob(request):
 
 
     try:
-        recorded_program = RecordedProgram.objects.filter(status=RecordedProgram.STATUS_NEW)[0]
+        recorded_program = RecordedProgram.objects.filter(status=RecordedProgram.STATUS_NEW).order_by("program__start","id")[0]
     except IndexError:
         raise Http404
 
