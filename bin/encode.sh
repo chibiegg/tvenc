@@ -13,10 +13,10 @@ if [ $# -ne 2 ];then
   exit 1
 fi
 
-if [ -z "$TVENC_APIKEY" ];then
-  echo "Please set environment 'TVENC_APIKEY'" >&2
-  exit 1
-fi
+#if [ -z "$TVENC_APIKEY" ];then
+#  echo "Please set environment 'TVENC_APIKEY'" >&2
+#  exit 1
+#fi
 
 get_new_program()
 {
@@ -27,6 +27,9 @@ get_new_program()
   PROGRAM_ID=`echo "$json" | jq -r .id`
   INPUT_FILE=`echo "$json" | jq -r .input`
   OUTPUT_FILE=`echo "$json" | jq -r .output`
+  echo $PROGRAM_ID
+  echo $INPUT_FILE
+  echo $OUTPUT_FILE
 }
 
 
@@ -41,22 +44,5 @@ shutdown_handler()
 
 trap shutdown_handler SIGINT
 
-
-
-
-
-
-
-
-while true
-do
-sleep 5
-done
-
-
-
-
-
-
-
+get_new_program
 

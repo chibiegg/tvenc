@@ -1,6 +1,7 @@
 # encoding=utf-8
 import datetime
 import json
+from django.conf import settings
 from django.http.response import HttpResponse, Http404
 from django.views.decorators.http import require_http_methods
 from tvenc.models import RecordedProgram
@@ -28,7 +29,7 @@ def get_newjob(request):
     recorded_program.save()
 
     input_file = "{0}/{1}".format(recorded_program.server.mountpoint, recorded_program.filename)
-    output_file = recorded_program.filename.replace(".m2ts", ".mp4")
+    output_file = "{0}/{1}".format(settings.ENCODED_DIR, recorded_program.filename.replace(".m2ts", ".mp4"))
 
     data = {
             "id":recorded_program.id,
