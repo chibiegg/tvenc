@@ -57,7 +57,7 @@ def update_status(request, id):
         recorded_program.status = RecordedProgram.STATUS_ENCODE_ERROR
     recorded_program.save()
 
-    return HttpResponse("OK")
+    return HttpResponse("Status:{0} OK".format(result))
 
 
 
