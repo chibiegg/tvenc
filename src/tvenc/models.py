@@ -121,6 +121,7 @@ class RecordedProgram(models.Model):
                      (STATUS_DELETED, "削除済み")
                      )
 
+    worker = models.CharField("エンコーダ", max_length=100, blank=True)
     status = models.IntegerField("ステータス", choices=STATUS_CHOICES, default=STATUS_NEW)
     filename = models.CharField("ファイル名", max_length=200)
 
