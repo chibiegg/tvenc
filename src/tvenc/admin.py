@@ -21,7 +21,8 @@ admin.site.register(Program, ProgramAdmin)
 
 
 class RecordedProgramAdmin(admin.ModelAdmin):
-    list_display = ("id", "server", "program", "status")
+    list_display = ("id", "server", "program", "status","start_encode","end_encode","worker")
+    list_filter = ("worker", "status")
 
 admin.site.register(RecordedProgram, RecordedProgramAdmin)
 
