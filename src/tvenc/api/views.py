@@ -27,12 +27,13 @@ def get_newjob(request):
     recorded_program.worker = form.cleaned_data["worker"]
     recorded_program.save()
 
-    url = "/recorded{0}/{1}".format(recorded_program.server.mountpoint, recorded_program.filename)
+    input_file = "{0}/{1}".format(recorded_program.server.mountpoint, recorded_program.filename)
+    output_file = recorded_program.filename.replace(".m2ts", ".mp4")
 
     data = {
             "id":recorded_program.id,
-            "filename":recorded_program.filename,
-            "url":url,
+            "input":input_file,
+            "output":output_file,
             }
     return HttpResponse(json.dumps(data), content_type="application/json")
 
