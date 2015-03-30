@@ -31,10 +31,10 @@ def get_newjob(request):
         program = recorded_program.program
         if program.episode:
             # 話数がある場合にはタイトルでディレクトリを分ける
-            filename = "{0}/{1}".format(program.title, encoded_program.filename)
+            filename = "{0}/{1}".format(program.title, recorded_program.filename)
         else:
             # 話数がない場合には年/曜日でディレクトリを分ける
-            filename = "{0}/wday_{1}/{2}".format(program.start.year, program.start.weekday(), encoded_program.filename)
+            filename = "{0}/wday_{1}/{2}".format(program.start.year, program.start.weekday(), recorded_program.filename)
 
         recorded_program.encoded_file = filename
 
