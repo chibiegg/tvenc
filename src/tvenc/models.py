@@ -127,8 +127,7 @@ class RecordedProgram(models.Model):
 
     start_encode = models.DateTimeField("エンコード開始時刻", blank=True, null=True)
     end_encode = models.DateTimeField("エンコード完了時刻", blank=True, null=True)
-    encoded_file = models.FilePathField("エンコード済みファイル", max_length=255, blank=True)
+    encoded_file = models.CharField("エンコード済みファイル", max_length=255, blank=True)
 
     def __str__(self):
         return self.program.__str__()
-

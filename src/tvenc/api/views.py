@@ -26,10 +26,22 @@ def get_newjob(request):
     recorded_program.status = RecordedProgram.STATUS_ENCODING
     recorded_program.start_encode = datetime.datetime.now()
     recorded_program.worker = form.cleaned_data["worker"]
+
+    if not recorded_program.encoded_file:
+        program = recorded_program.program
+        if program.episode:
+            # 話数がある場合にはタイトルでディレクトリを分ける
+            filename = "{0}/{1}".format(program.title, encoded_program.filename)
+        else:
+            # 話数がない場合には年/曜日でディレクトリを分ける
+            filename = "{0}/wday_{1}/{2}".format(program.start.year, program.start.weekday(), encoded_program.filename)
+
+        recorded_program.encoded_file = filename
+
     recorded_program.save()
 
     input_file = "{0}/{1}".format(recorded_program.server.mountpoint, recorded_program.filename)
-    output_file = "{0}/{1}".format(settings.ENCODED_DIR, recorded_program.filename.replace(".m2ts", ".mp4"))
+    output_file = "{0}/{1}".format(settings.ENCODED_DIR, recorded_program.encoded_file.replace(".m2ts", ".mp4"))
 
     data = {
             "id":recorded_program.id,
@@ -58,7 +70,3 @@ def update_status(request, id):
     recorded_program.save()
 
     return HttpResponse("Status:{0} OK".format(result))
-
-
-
-
